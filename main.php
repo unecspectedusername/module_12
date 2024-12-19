@@ -171,3 +171,23 @@ function getPerfectPartner($surname, $name, $patronymic, $personsArray)
     \u{2661} Идеально на $matchPercentage \u{2661}
     RESULT;
 }
+
+/** ПРОВЕРЯЕМ РАБОТУ ФУНКЦИЙ */
+
+print_r("// Функция getPartsFromFullname \n");
+print_r(getPartsFromFullname('Иванов Иван Иванович'));
+
+print_r("\n\n// Функция getFullnameFromParts \n");
+print_r(getFullnameFromParts('Иванов', 'Иван', 'Иванович'));
+
+print_r("\n\n// Функция getShortName \n");
+print_r(getShortName('Иванов Иван Иванович'));
+
+print_r("\n\n// Функция getGenderFromName \n");
+print_r(getGenderFromName('Иванов Иван Иванович'));
+
+print_r("\n\n// Функция getGenderDescription \n");
+print_r(getGenderDescription($example_persons_array));
+
+print_r("\n\n// Функция getPerfectPartner \n");
+print_r(getPerfectPartner('иванов', 'ИВАН', 'иВнОвИч', $example_persons_array));
