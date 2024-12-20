@@ -119,6 +119,15 @@ function getGenderDescription($personsArray)
     RESULT;
 }
 
+// функция по извлечению случайного пользователя из массива
+function getRandomPerson($array)
+{
+    // создаем случайный индекс на основе длины массива
+    $randomIndex = mt_rand(0, count($array) - 1);
+    // возвращаем имя пользователя из подмассива по этому индексу
+    return $array[$randomIndex]['fullname'];
+}
+
 // Функция принимает ФИО в виде отдельных строк и массив с данными о пользователях. Возвращает строку, в которой содержится сокращенное имя пользователя №1, сокращенное имя пользователя №2, который случайно выбирается из массива с пользователями по критерию пола (пол должен быть противоположным к пользователю №1), а так же процент соответствия (случайное число от 50 до 100)
 function getPerfectPartner($surname, $name, $patronymic, $personsArray)
 {
@@ -140,15 +149,6 @@ function getPerfectPartner($surname, $name, $patronymic, $personsArray)
     // Определяем пол
     $mainPersonGender = getGenderFromName($mainPersonFullName);
 
-    // выбираем случайную пару для пользователя из массива
-    // создаем функцию по извлечению случайного пользователя из массива
-    function getRandomPerson($array) {
-        // создаем случайный индекс на основе длины массива
-        $randomIndex = mt_rand(0, count($array) -1);
-        // возвращаем имя пользователя из подмассива по этому индексу
-        return $array[$randomIndex]['fullname'];
-    }
-
     // создаем цикл для нахождения пользователя противоположного пола
     do {
         // выбираем случайное имя из массива
@@ -158,10 +158,10 @@ function getPerfectPartner($surname, $name, $patronymic, $personsArray)
     } while ($randomPersonGender == $mainPersonGender || $randomPersonGender == 0); // если пол случайного пользователя совпадает с поло основного или не определен, повторяем цикл
 
     // готовим данные для вывода результата
-    
+
     // случайный процент соответствия пары
     $matchPercentage = mt_rand(5000, 10000) / 100 . '%';
-    
+
     // сокращаем имена для вывода результата
     $names = [getShortName($mainPersonFullName), getShortName($randomPerson)];
 
